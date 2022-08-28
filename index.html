@@ -13,7 +13,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
     />
-    <!-- CSS only -->
+    <!-- Bootstrap CSS only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -203,7 +203,7 @@
                     <h5 class="card-title m-0">4.8 Rating</h5>
                   </div>
                   <div class="hstack gap-3 my-3">
-                    <div class="">
+                    <div class="users">
                       <img
                         src="/assets/user-1.jpg"
                         alt="picture of user 1"
@@ -631,15 +631,20 @@
           </div>
           <div class="modal-body p-5 my-0">
             <!-- Modal Form  -->
-            <form class="">
+            <form class="needs-validation" autocomplete="off" novalidate>
               <div class="form-floating mb-3">
                 <input
                   type="text"
                   class="form-control rounded-3"
                   id="floatingName"
                   placeholder="Your full name"
+                  required
                 />
                 <label for="floatingName">Your Full Name</label>
+                <div class="valid-feedback">This name go work!</div>
+                <div class="invalid-feedback">
+                  Abeg you need give us your full name o!.
+                </div>
               </div>
               <div class="form-floating mb-3">
                 <input
@@ -647,17 +652,28 @@
                   class="form-control rounded-3"
                   id="floatingEmail"
                   placeholder="name@example.com"
+                  required
                 />
                 <label for="floatingEmail">Email address</label>
+                <div class="valid-feedback">E de fine! fine!</div>
+                <div class="invalid-feedback">
+                  Abeg enter a correct Email Address!.
+                </div>
               </div>
               <div class="form-floating mb-3">
                 <input
                   type="tel"
                   class="form-control rounded-3"
                   id="floatingTel"
-                  placeholder="+2348012345678"
+                  placeholder="08012345678"
+                  pattern="[0-9]{11}"
+                  required
                 />
-                <label for="floatingTel">Phone</label>
+                <label for="floatingTel">Phone Number</label>
+                <div class="valid-feedback">This looks good!</div>
+                <div class="invalid-feedback">
+                  Abeg make sure the phone number na 11 digits.
+                </div>
               </div>
 
               <div class="form-floating mb-3">
@@ -666,8 +682,12 @@
                   placeholder="Leave a comment here"
                   id="floatingNote"
                   style="height: 100px"
+                  required
                 ></textarea>
                 <label for="floatingNote">Special Request</label>
+                <div class="invalid-feedback">
+                  Abeg tell us something about your request
+                </div>
               </div>
 
               <button
@@ -681,6 +701,32 @@
         </div>
       </div>
     </div>
+
+    <!-- Request form validation   -->
+    <script>
+      (() => {
+        'use strict';
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation');
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            'submit',
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add('was-validated');
+            },
+            false
+          );
+        });
+      })();
+    </script>
 
     <!-- JavaScript Bundle with Popper -->
     <script
